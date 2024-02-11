@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soal Algoritma</title>
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Soal Algoritma</h1>
+    
+    <!-- Soal 1: Reverse Alphabet -->
+    <div class="card mb-3">
+      <div class="card-header">Soal 1: Reverse Alphabet</div>
+      <div class="card-body">
+        <p class="card-text">String: "NEGIE1"</p>
+        <p class="card-text">Hasil Reverse Alphabet: <span id="reverseAlphabetResult"></span></p>
+      </div>
+    </div>
+
+    <!-- Soal 2: Longest Word -->
+    <div class="card mb-3">
+      <div class="card-header">Soal 2: Longest Word</div>
+      <div class="card-body">
+        <p class="card-text">Kalimat: "Saya sangat senang mengerjakan soal algoritma"</p>
+        <p class="card-text">Kata Terpanjang: <span id="longestWordResult"></span></p>
+      </div>
+    </div>
+
+    <!-- Soal 3: Jumlah Kata dalam Array -->
+    <div class="card mb-3">
+      <div class="card-header">Soal 3: Jumlah Kata dalam Array</div>
+      <div class="card-body">
+        <p class="card-text">INPUT: ['xc', 'dz', 'bbb', 'dz']</p>
+        <p class="card-text">QUERY: ['bbb', 'ac', 'dz']</p>
+        <p class="card-text">Hasil: <span id="wordCountResult"></span></p>
+      </div>
+    </div>
+
+    <!-- Soal 4: Pengurangan Diagonal Matriks -->
+    <div class="card mb-3">
+      <div class="card-header">Soal 4: Pengurangan Diagonal Matriks</div>
+      <div class="card-body">
+        <p class="card-text">Matriks:</p>
+        <p class="card-text">[[1, 2, 0], [4, 5, 6], [7, 8, 9]]</p>
+        <p class="card-text">Hasil: <span id="diagonalDifferenceResult"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (optional) -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <!-- JavaScript untuk menyelesaikan soal -->
+  <script>
+    // Soal 1: Reverse Alphabet
+    // Soal 1: Reverse Alphabet
+    const originalString1 = "NEGIE1";
+    const reversedString1 = reverseAlphabet(originalString1);
+    document.getElementById('reverseAlphabetResult').textContent = reversedString1;
+
+    function reverseAlphabet(str) {
+        const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const reversedAlphabet = 'zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA';
+        let result = '';
+
+        for (let i = 0; i < str.length; i++) {
+            const char = str[i];
+            if (char >= 'a' && char <= 'z') {
+                const index = alphabet.indexOf(char);
+                result += reversedAlphabet[index];
+            } else if (char >= 'A' && char <= 'Z') {
+                const index = alphabet.indexOf(char.toLowerCase());
+                result += reversedAlphabet[index].toUpperCase();
+            } else {
+                result += char;
+            }
+        }
+
+        // Letakkan angka di akhir kata
+        const lastChar = result.charAt(result.length - 1);
+        if (!isNaN(parseInt(lastChar))) {
+            result = result.slice(0, -1) + lastChar;
+        }
+
+        return result;
+    }
+
+// Soal 2: Longest Word
+const sentence2 = "Saya sangat senang mengerjakan soal algoritma";
+const longestWord2 = findLongestWord(sentence2);
+document.getElementById('longestWordResult').textContent = longestWord2;
+
+function findLongestWord(sentence) {
+    const words = sentence.split(" ");
+    let longestWord = "";
+
+    for (let i = 0; i < words.length; i++) {
+        if (words[i].length > longestWord.length) {
+            longestWord = words[i];
+        }
+    }
+
+    return longestWord;
+}
+
+// Soal 3: Jumlah Kata dalam Array
+const inputArray3 = ['xc', 'dz', 'bbb', 'dz'];
+const queryArray3 = ['bbb', 'ac', 'dz'];
+const wordCountResult3 = countWords(inputArray3, queryArray3);
+document.getElementById('wordCountResult').textContent = wordCountResult3.join(', ');
+
+function countWords(inputArray, queryArray) {
+    const wordCount = [];
+
+    for (let i = 0; i < queryArray.length; i++) {
+        const query = queryArray[i];
+        let count = 0;
+        for (let j = 0; j < inputArray.length; j++) {
+            if (query === inputArray[j]) {
+                count++;
+            }
+        }
+        wordCount.push(count);
+    }
+
+    return wordCount;
+}
+
+// Soal 4: Pengurangan Diagonal Matriks
+const matrix4 = [[1, 2, 0], [4, 5, 6], [7, 8, 9]];
+const diagonalDifference4 = findDiagonalDifference(matrix4);
+document.getElementById('diagonalDifferenceResult').textContent = diagonalDifference4;
+
+function findDiagonalDifference(matrix) {
+    let diagonal1 = 0;
+    let diagonal2 = 0;
+
+    for (let i = 0; i < matrix.length; i++) {
+        diagonal1 += matrix[i][i];
+        diagonal2 += matrix[i][matrix.length - 1 - i];
+    }
+
+    return Math.abs(diagonal1 - diagonal2);
+}
+
+  </script>
+</body>
+</html>
